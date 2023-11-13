@@ -1,8 +1,5 @@
-package ru.alishev.springcourse.models;
+package com.degiv.springmvcwebapp.models;
 
-/**
- * @author Neil Alishev
- */
 public class Person {
     private int id;
     private String name;

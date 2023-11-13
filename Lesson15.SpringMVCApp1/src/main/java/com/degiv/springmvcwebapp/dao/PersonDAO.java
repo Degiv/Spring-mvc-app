@@ -1,14 +1,12 @@
-package ru.alishev.springcourse.dao;
+package com.degiv.springmvcwebapp.dao;
 
 import org.springframework.stereotype.Component;
-import ru.alishev.springcourse.models.Person;
+import com.degiv.springmvcwebapp.models.Person;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Neil Alishev
- */
+
 @Component
 public class PersonDAO {
     private static int PEOPLE_COUNT;

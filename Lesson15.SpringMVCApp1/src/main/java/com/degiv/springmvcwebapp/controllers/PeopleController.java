@@ -1,15 +1,12 @@
-package ru.alishev.springcourse.controllers;
+package com.degiv.springmvcwebapp.controllers;
 
+import com.degiv.springmvcwebapp.dao.PersonDAO;
+import com.degiv.springmvcwebapp.models.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.alishev.springcourse.dao.PersonDAO;
-import ru.alishev.springcourse.models.Person;
 
-/**
- * @author Neil Alishev
- */
 @Controller
 @RequestMapping("/people")
 public class PeopleController {
