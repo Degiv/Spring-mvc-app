@@ -1,9 +1,22 @@
 package com.degiv.springmvcwebapp.models;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
 public class Person {
     private int id;
+
+    @NotEmpty(message = "Empty name is not allowed")
+    @Size(min = 2, max = 30, message = "Allowed size is 2-30 characters")
     private String name;
+
+    @Min(value = 0, message = "Age should be greater than 0")
     private int age;
+
+    @NotEmpty
+    @Email
     private String email;
 
     public Person() {
