@@ -1,23 +1,27 @@
-package com.degiv.springmvcwebapp.controllers;
+package ru.alishev.springcourse.controllers;
 
-import com.degiv.springmvcwebapp.dao.PersonDAO;
-import com.degiv.springmvcwebapp.models.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ru.alishev.springcourse.dao.PersonDAO;
+import ru.alishev.springcourse.models.Person;
 
+/**
+ * @author Neil Alishev
+ */
 @Controller
 @RequestMapping("/people")
 public class PeopleController {
-    private PersonDAO personDAO;
+
+    private final PersonDAO personDAO;
 
     @Autowired
     public PeopleController(PersonDAO personDAO) {
         this.personDAO = personDAO;
     }
 
-    @GetMapping
+    @GetMapping()
     public String index(Model model) {
         model.addAttribute("people", personDAO.index());
         return "people/index";
@@ -30,12 +34,11 @@ public class PeopleController {
     }
 
     @GetMapping("/new")
-    public String newPerson(Model model) {
-        model.addAttribute("person", new Person());
+    public String newPerson(@ModelAttribute("person") Person person) {
         return "people/new";
     }
 
-    @PostMapping
+    @PostMapping()
     public String create(@ModelAttribute("person") Person person) {
         personDAO.save(person);
         return "redirect:/people";
@@ -47,9 +50,15 @@ public class PeopleController {
         return "people/edit";
     }
 
-    @PostMapping ("/{id}")
+    @PatchMapping("/{id}")
     public String update(@ModelAttribute("person") Person person, @PathVariable("id") int id) {
         personDAO.update(id, person);
+        return "redirect:/people";
+    }
+
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable("id") int id) {
+        personDAO.delete(id);
         return "redirect:/people";
     }
 }
